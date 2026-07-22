@@ -1,0 +1,39 @@
+name: Build and Deploy Docker App to Azure
+
+# Trigger the workflow every time you push to the 'main' branch
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. Get the code from the repository
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # 2. Log in to Docker Hub using the secrets we created
+      - name: Log in to Docker Hub
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+
+      # 3. Build the Docker image and push it to Docker Hub
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v4
+        with:
+          context: .
+          push: true
+          tags: ${{ secrets.DOCKER_USERNAME }}/tolis-ai-api:latest
+
+      # 4. Tell Azure to pull the new image and restart the server
+      - name: Deploy to Azure Web App
+        uses: azure/webapps-deploy@v2
+        with:
+          app-name: 'tolis-ai-api'  # <-- ΑΛΛΑΞΕ ΑΥΤΟ ΜΕ ΤΟ ΟΝΟΜΑ ΤΟΥ AZURE APP ΣΟΥ
+          publish-profile: ${{ secrets.AZURE_PUBLISH_PROFILE }}
+          images: '${{ secrets.DOCKER_USERNAME }}/cloud-ai-api:latest'
