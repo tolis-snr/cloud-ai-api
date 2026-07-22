@@ -1,0 +1,23 @@
+# === Python / FastAPI ===
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# === Virtual Environments (αν φτιάξεις ποτέ τοπικά) ===
+venv/
+env/
+.venv/
+
+# === Secrets & Environment Variables ===
+.env
+
+# === Vector Database ===
+# Αγνοούμε τη βάση δεδομένων γιατί περιέχει μεγάλα αρχεία
+# και θέλουμε κάθε περιβάλλον να φτιάχνει τη δική του από την αρχή.
+chroma_db/
+
+# === OS & IDE Files ===
+.DS_Store
+.vscode/
+Thumbs.db
