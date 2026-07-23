@@ -21,3 +21,9 @@ chroma_db/
 .DS_Store
 .vscode/
 Thumbs.db
+
+# === Terraform ===
+.terraform/
+*.tfstate
+*.tfstate.backup
+*.tfvars
