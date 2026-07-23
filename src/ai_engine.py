@@ -61,14 +61,22 @@ def ask_rag_system(question: str) -> dict:
     context = "\n\n".join([chunk.page_content for chunk in relevant_chunks])
     
     # 2. Create the STRICT prompt using the 'context' and 'question'
-    # --- WRITE YOUR CODE BELOW ---
-    # strict_prompt = f"..."
-    strict_prompt = f"""Answer the following question based ONLY on the context provided below. 
-    If the answer is not in the context, respond with 'I don't know.'\n\nContext:\n{context}\n\nQuestion:\n{question}"""
+    strict_prompt = f"""
+    You are a polite and helpful AI assistant. 
+    Follow these rules strictly:
+    
+    1. If the user's input is a simple greeting or pleasantry (e.g., "Hello", "Hi", "How are you?"), respond politely and ask how you can help them with their documents.
+    2. For all other questions, you MUST answer using ONLY the information provided in the Context below.
+    3. If the answer to the question cannot be found in the Context, you MUST output exactly: "I don't know based on the provided context." Do not hallucinate or use outside knowledge.
+
+    Context:
+    {context}
+
+    User Input:
+    {question}
+    """
     
     # 3. Call the LangChain LLM (llm.invoke())
-    # --- WRITE YOUR CODE BELOW ---
-    # ai_response = ...
     ai_response = llm.invoke(strict_prompt)
     
     return {"answer": ai_response.content, "context_used": context}
