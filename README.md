@@ -6,6 +6,7 @@
 [![Docker](https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white)]()
 [![Azure](https://img.shields.io/badge/Microsoft_Azure-0089D6?style=for-the-badge&logo=microsoft-azure&logoColor=white)]()
 [![CI/CD](https://img.shields.io/badge/GitHub_Actions-2088FF?style=for-the-badge&logo=github-actions&logoColor=white)]()
+[![Terraform](https://img.shields.io/badge/Terraform-7B42BC?style=for-the-badge&logo=terraform&logoColor=white)]()
 
 A fully production-ready, cloud-native **Retrieval-Augmented Generation (RAG)** application. This project demonstrates a modern microservices approach by decoupling a robust AI backend (hosted on Microsoft Azure via Docker) from an interactive frontend (hosted on Streamlit Cloud).
 
@@ -52,6 +53,7 @@ graph LR
 * **Containerization:** Docker, Docker Hub
 * **CI/CD:** GitHub Actions
 * **Cloud Hosting:** Microsoft Azure App Services (Linux Container)
+* **Infrastructure as Code:** Uses Terraform to automatically provision Azure Resource Groups, App Service Plans, and Linux Web Apps.
 
 **Frontend:**
 * **Framework:** Streamlit
